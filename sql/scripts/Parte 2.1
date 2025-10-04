@@ -1,0 +1,8 @@
+-- Para cada cliente, mostre o valor do pedido e o rank dos pedidos (maior → menor)
+
+SELECT 
+    c.nome AS nome_cliente,
+    o.valor_total AS valor_pedido,
+    RANK() OVER (ORDER BY o.valor_total DESC) AS rank_pedido
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id;
