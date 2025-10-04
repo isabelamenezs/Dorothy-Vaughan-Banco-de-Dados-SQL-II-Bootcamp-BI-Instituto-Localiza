@@ -1,1 +1,1 @@
-
+-- 3 Identifique consultas que podem ser reescritas usando CTE materializada para melhorar a performance
