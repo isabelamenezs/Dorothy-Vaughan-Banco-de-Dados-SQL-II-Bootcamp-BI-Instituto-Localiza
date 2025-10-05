@@ -1,3 +1,18 @@
+-- 1. Liste todos os produtos e indique se foram ou não vendidos (LEFT JOIN).
+SELECT 
+    p.product_id,
+    p.nome AS produto,
+    p.categoria,
+    CASE 
+        WHEN COUNT(oi.order_item_id) > 0 THEN 'Vendido'
+        ELSE 'Não vendido'
+    END AS status_venda
+FROM products p
+LEFT JOIN order_items oi
+    ON p.product_id = oi.product_id
+GROUP BY p.product_id, p.nome, p.categoria
+ORDER BY p.product_id;
+
 -- Questão 2) Traga os clientes que compraram todos os produtos de uma categoria (pode usar NOT EXISTS). 
 SELECT c.customer_id, c.nome
 FROM customers c
