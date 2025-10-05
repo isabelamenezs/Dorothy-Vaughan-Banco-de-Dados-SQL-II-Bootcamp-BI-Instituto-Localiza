@@ -1,6 +1,21 @@
 --1)Para cada cliente, mostre o valor do pedido e o rank dos pedidos (maior → menor).
-
-
+SELECT 
+    c.nome AS cliente,
+    o.order_id,
+    o.dt_pedido,
+    o.valor_total,
+    FIRST_VALUE(o.valor_total) OVER (
+        PARTITION BY c.customer_id 
+        ORDER BY o.dt_pedido ASC
+    ) AS primeiro_pedido,
+    LAST_VALUE(o.valor_total) OVER (
+        PARTITION BY c.customer_id 
+        ORDER BY o.dt_pedido ASC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS ultimo_pedido
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+ORDER BY c.nome, o.dt_pedido;
 
 --2)Media movel de 3 pedidos para cada cliente
 SELECT
