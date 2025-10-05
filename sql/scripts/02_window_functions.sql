@@ -30,3 +30,24 @@ SELECT
 	), 2
 	) AS media_dos_ultimos_3_pedidos
 FROM orders;
+
+--3) Mostre o valor do primeiro e do último pedido de cada cliente usando FIRST_VALUE
+e LAST_VALUE
+
+SELECT 
+    c.nome AS cliente,
+    o.order_id,
+    o.dt_pedido,
+    o.valor_total,
+    FIRST_VALUE(o.valor_total) OVER (
+        PARTITION BY c.customer_id 
+        ORDER BY o.dt_pedido ASC
+    ) AS primeiro_pedido,
+    LAST_VALUE(o.valor_total) OVER (
+        PARTITION BY c.customer_id 
+        ORDER BY o.dt_pedido ASC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS ultimo_pedido
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+ORDER BY c.nome, o.dt_pedido;
