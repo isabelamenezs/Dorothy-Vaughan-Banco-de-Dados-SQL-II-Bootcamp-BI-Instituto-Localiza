@@ -1,4 +1,4 @@
--- crie um indíce em orders (customer_id, dt_pedido) e explique quando ele será usado
+-- 1)crie um indíce em orders (customer_id, dt_pedido) e explique quando ele será usado
 
 CREATE INDEX idx_orders_customer_date
 ON orders (customer_id, dt_pedido);
