@@ -31,8 +31,7 @@ SELECT
 	) AS media_dos_ultimos_3_pedidos
 FROM orders;
 
---3) Mostre o valor do primeiro e do último pedido de cada cliente usando FIRST_VALUE
-e LAST_VALUE
+--3) Mostre o valor do primeiro e do último pedido de cada cliente usando FIRST_VALUE e LAST_VALUE
 
 SELECT 
     c.nome AS cliente,
