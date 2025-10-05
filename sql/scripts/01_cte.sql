@@ -11,3 +11,20 @@ WITH total_por_cliente AS (
 SELECT nome, total_gasto
 FROM total_por_cliente
 ORDER BY total_gasto DESC;
+
+-- 2. Use uma CTE recursiva para gerar uma sequência de datas (últimos 12 meses) e
+depois faça um LEFT JOIN com os pedidos para mostrar meses sem vendas.
+
+SELECT 
+    p.product_id,
+    p.nome AS produto,
+    p.categoria,
+    CASE 
+        WHEN COUNT(oi.order_item_id) > 0 THEN 'Vendido'
+        ELSE 'Não vendido'
+    END AS status_venda
+FROM products p
+LEFT JOIN order_items oi
+    ON p.product_id = oi.product_id
+GROUP BY p.product_id, p.nome, p.categoria
+ORDER BY p.product_id;
