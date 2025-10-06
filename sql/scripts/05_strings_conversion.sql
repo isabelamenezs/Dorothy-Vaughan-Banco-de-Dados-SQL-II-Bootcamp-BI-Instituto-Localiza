@@ -3,7 +3,9 @@
 
 
 -- 2) Converta o nome dos clientes para MAIÚSCULAS.
-
+SELECT
+	UPPER(c.NOME) AS nome_maiusculo
+FROM customers c ;
 
 -- 3) Crie uma coluna calculada que concatene o nome do cliente com o ID do pedido (ex.: "João - Pedido 123")
 
