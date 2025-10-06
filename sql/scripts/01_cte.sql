@@ -12,8 +12,7 @@ SELECT nome, total_gasto
 FROM total_por_cliente
 ORDER BY total_gasto DESC;
 
--- 2. Use uma CTE recursiva para gerar uma sequência de datas (últimos 12 meses) e
-depois faça um LEFT JOIN com os pedidos para mostrar meses sem vendas.
+-- 2. Use uma CTE recursiva para gerar uma sequência de datas (últimos 12 meses) e depois faça um LEFT JOIN com os pedidos para mostrar meses sem vendas.
 
 SELECT 
     p.product_id,
