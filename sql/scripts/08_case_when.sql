@@ -19,4 +19,13 @@ FROM customers c
 LEFT JOIN orders o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.nome;
 
--- 3
+-- 3 Em um relatório de pedidos, mostre NULL como "Sem valor informado". (Atribuidas a @amanda )
+SELECT 
+    o.order_id AS "ID do Pedido",
+    COALESCE(c.nome, 'Sem valor informado') AS "Nome do Cliente",
+    COALESCE(c.email, 'Sem valor informado') AS "E-mail",
+    COALESCE(o.dt_pedido, 'Sem valor informado') AS "Data do Pedido",
+    COALESCE(CAST(o.valor_total AS TEXT), 'Sem valor informado') AS "Valor Total",
+    COALESCE(o.status, 'Sem valor informado') AS "Status"
+FROM orders o
+LEFT JOIN customers c ON o.customer_id = c.customer_id;

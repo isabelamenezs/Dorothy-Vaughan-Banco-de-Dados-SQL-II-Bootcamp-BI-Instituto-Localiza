@@ -40,7 +40,18 @@ JOIN
 WHERE 
     t.total_gasto > 2000;
 
-
+---------------------------------
+WITH pedidos_clientes AS (
+    SELECT 
+        c.customer_id,
+        c.nome,
+        o.order_id
+    FROM orders o
+    JOIN customers c ON o.customer_id = c.customer_id
+)
+SELECT 
+    nome || ' - Pedido ' || order_id AS cliente_pedido
+FROM pedidos_clientes;
 
 
 
