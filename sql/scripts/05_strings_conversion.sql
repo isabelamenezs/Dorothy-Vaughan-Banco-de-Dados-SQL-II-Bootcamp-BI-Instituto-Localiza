@@ -1,6 +1,9 @@
 
--- 1) Manipulação de Strings e Conversão : Mostre apenas o domínio do e-mail dos clientes (parte depois do @).
-
+-- 1 Mostre apenas o domínio do e-mail dos clientes (parte depois do @).
+SELECT 
+    SUBSTR(email, INSTR(email, '@') + 1) AS dominio_email
+FROM 
+    customers;
 
 -- 2) Converta o nome dos clientes para MAIÚSCULAS.
 SELECT
